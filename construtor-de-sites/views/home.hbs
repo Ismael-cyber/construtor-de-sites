@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/resources/css/lib/bootstrap.min.css">
+    <script src="/resources/js/lib/bootstrap.min.js"></script>
+    <script src="/resources/js/lib/popper.min.js"></script>
+    <script src="/resources/js/lib/axios.min.js"></script>
+    <script type="text/javascript" src="/resources/js/custom.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <form id="create-page" novalidate onsubmit="return validateForm(event)">                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPageModalLabel">Create Page</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="col-auto">
+                        <label class="form-label" for="name">Name</label>
+                        <input 
+                        type="text"
+                        name="name"
+                        id="name"
+                        class="form-control form-control-sm mb-2"
+                        placeholder="Nome da Página"
+                        required
+                        />
+                        <div class="invalid-feedback">
+                            Por Favor coloque um nome válido
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer mr-2">
+                    <button 
+                       type="button" 
+                       class="btn btn-sm btn-secondary"
+                       data-bs-dismiss="modal"
+                       onclick="clearForm()"
+                    >
+                       Clear
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        Save
+                    </button>
+                </div>
+               </form>
+            </div>
+            <div class="col-12 my-2">
+                <table class="table table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Slug</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each pages}}
+                        <tr>
+                            <td>{{this._id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.slug}}</td>
+                            <td>
+                                <a href="/editor/{{this._id}}">Edit</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
